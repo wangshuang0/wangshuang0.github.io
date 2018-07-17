@@ -1,1 +1,160 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分享规则</title>
+    <style>
+        .wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+            font-family: 'Microsoft YaHei', SimSun, '宋体', Heiti, '黑体', sans-serif;
+            color: #393939;
+            line-height: 1.75;
+            background: #f1f1f1;
+        }
+
+        h2 {
+            margin: 30px 0;
+        }
+
+        .big-title {
+            text-align: center;
+        }
+
+        .share-img {
+            display: block;
+            width: 400px;
+            height: auto;
+        }
+
+        .box {
+            margin-bottom: 20px;
+        }
+
+        .box p {
+            margin-bottom: 7px;
+            margin-top: 0;
+        }
+        h4 {
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <h2 class="big-title">facebook, twitter, link 等社交分享</h2>
+        <h4>
+            之前做页面中的分享，遇到了状况，出现的问题很容易被忽略, 简单总结下。 首先分享网页必须是匿名从公网访问的（线上地址), 爬虫爬取都有一套自己的算法，按标准写
+        </h4>
+        <div class="box">
+            <p>
+                1、facebook规则根据open graph meta tags（og），facebook会自己从所分享的页面上去抓取这些og里面的内容，你可以定义如图片，描述等等 og定义后，分享就很美观了，具体标签含义可去官网查
+                <br
+                /> 地址
+                <a href="https://developers.facebook.com/docs/sharing/webmasters/">https://developers.facebook.com/docs/sharing/webmasters/</a>
+            </p>
+            <p>
+                <meta property="og:url" content="https://www.bitrue.com/activity/landing">
+                <meta property="og:type" content="article">
+                <meta property="og:title" content="title">
+                <meta property="og:type" content="Bitrue">
+                <meta property="og:site_name" content="Bitrue全球领先的数字资产交易平台">
+                <meta property="og:description" content="site description">
+                <meta property="og:image" content="https://www.bitrue.com/exchange-web/res/img/share/activity_fb_cn.png">
+                <meta property="og:image:width" content="1200">
+                <meta property="og:image:height" content="630">
+            </p>
+
+            <p>
+                分享链接是：https://www.facebook.com/sharer/sharer.php?u=encodeURIComponent(url)
+            </p>
+
+            <p>
+                分享后的展示：
+                <img class="share-img" src="./images/share.png" />
+            </p>
+        </div>
+        <div class="box">
+            <p>
+                2、twitter分享也有自己的一套规则，但是如果没有写的话，也是遵循og规则，我之前只加了og，没加twiiter分享规则，导致twiiter分享出现问题，不是自己预期的，所以还是加上，有备无患
+            </p>
+            <p>
+                <meta property="twitter:card" content="summary">
+                <meta property="twitter:title" content="title">
+                <meta property="twitter:description" content="description">
+                <meta property="twitter:image:src" content="https://www.bitrue.com/exchange-web/res/img/share/activity_fb_cn.png">
+                <meta property="twitter:domain" content="bitrue.com">
+            </p>
+            <p>
+                分享链接： https://twitter.com/intent/tweet?url=encodeURIComponent(url)}&text=encodeURIComponent(text）
+            </p>
+
+        </div>
+        <div class="box">
+            <p>3、telegram分享</p>
+            <p>分享链接： https://telegram.me/share/url?url=encodeURIComponent(url)&text=encodeURIComponent(url)</p>
+        </div>
+
+        <div class="box">
+            <p>4、LINE分享</p>
+            <p> 分享链接：https://lineit.line.me/share/ui?url=encodeURIComponent(url)&text=encodeURIComponent(text)</p>
+        </div>
+
+        <div class="box">
+            <p>5、Whatspp分享</p>
+            <p>分享链接：https://api.whatsapp.com/send?text=encodeURIComponent(text&url=encodeURIComponent(url）</p>
+        </div>
+        <div class="box">
+            <p>6、messenger分享</p>
+            <p>分享链接：fb-messenger://share/?link=encodeURIComponent(url)</p>
+        </div>
+        <p>
+            telegram、LINE、Whatspp、messenger按分享地址填写一般不会有什么问题。
+        </p>
+        <div class="box">
+            <p>注意点：</p>
+            <p>
+                1、FB和TW 分享的meta 标签，必须是服务器生成的，如果有动态分享的内容， 用js改动的话，og tag并不会被识别出变动， 需要用到facebook 的javascript sdk
+                <a href="https://developers.facebook.com/docs/javascript/quickstart">https://developers.facebook.com/docs/javascript/quickstart</a>
+            </p>
+            <p>
+                2、在测试的时候很容易碰见，分享的时候没有看见缩略图，内容没更新等问题，可能和缓存或者分享有问题，检测有
+                <br /> FB调试工具：
+                <a href="https://developers.facebook.com/tools/debug/sharing"> https://developers.facebook.com/tools/debug/sharing</a>
+                <br /> TW调试工具：
+                <a href="https://cards-dev.twitter.com/validator">https://cards-dev.twitter.com/validator</a>
+
+            </p>
+
+            <p>
+                3、分享的url和text最好都编码encodeURIComponent
+            </p>
+            <p>
+                4、og:ur写的网址，是爬虫抓取放置属性标签的页面
+            </p>
+            <p>
+                5、whatsapp和messenger 分享是根据浏览器规则，如果没有装相应的app打开的是空白页面
+            </p>
+
+        </div>
+        <div class="box">
+            <p>
+                遇到的问题：
+                <br /> &nbsp;&nbsp;遇到的问题都是上面说的注意点，避免踩坑
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
